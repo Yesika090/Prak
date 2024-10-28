@@ -1,0 +1,92 @@
+class Queue:
+    def __init__(self):
+        self._data = []
+    
+    def get_length(self):
+        return len(self._data)
+    
+    def enqueue(self, data):
+        self._data.append(data)
+    
+    def dequeue(self):
+        if self.get_length() > 0:
+            return self._data.pop(0)
+        return None
+    
+    def front(self):
+        if self.get_length() > 0:
+            return self._data[0]
+        return None
+    
+    def write_all_data(self):
+        print("DATA:")
+        for item in self._data:
+            print(item)
+
+
+def get_min(queue):
+    temp_queue = Queue()
+    min_value = None
+
+    # Find minimum value by dequeuing all elements
+    for _ in range(queue.get_length()):
+        current_value = queue.dequeue()
+        if min_value is None or current_value < min_value:
+            min_value = current_value
+        temp_queue.enqueue(current_value)
+
+    # Restore original queue order
+    for _ in range(temp_queue.get_length()):
+        queue.enqueue(temp_queue.dequeue())
+
+    return min_value
+
+
+def pop(queue):
+    temp_queue = Queue()
+    last_item = None
+
+    # Dequeue elements except the last one
+    while queue.get_length() > 1:
+        temp_queue.enqueue(queue.dequeue())
+
+    # The last item to dequeue is the "last" element
+    if queue.get_length() == 1:
+        last_item = queue.dequeue()
+
+    # Restore the original queue without the last item
+    while temp_queue.get_length() > 0:
+        queue.enqueue(temp_queue.dequeue())
+
+    return last_item
+
+
+if __name__ == "__main__":
+    q = Queue()
+    for i in [10, 8, 5, 60, 1, 2, 3, 4, 100]:
+        q.enqueue(i)
+    
+    print("==========")
+    print("Data Awal")
+    q.write_all_data()
+    print("==========")
+    
+    print(f"Data terkecil = {get_min(q)}")
+    print("==========\n")
+    
+    print("Pembuktian isi queue tidak berubah")
+    print("==========")
+    print("Data Akhir")
+    q.write_all_data()
+    print("==========\n")
+    
+    print("============")
+    print("Percobaan Pop")
+    print(f"pop - 1 = {pop(q)}")
+    print(f"pop - 2 = {pop(q)}")
+    print(f"pop - 3 = {pop(q)}")
+    print("=============")
+    
+    print("Hasil Akhir:")
+    q.write_all_data()
+    print("=============")
