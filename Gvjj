@@ -1,0 +1,39 @@
+from PrioQueueunsorted import PrioQueueUnsorted
+
+2
+
+JeUnsorted.py
+
++
+
+3 pricUnsortedQueue PrioQueueUnsorted()
+
+4 prioUnsortedQueue.print_all()
+
+5 prioUnsortedQueue.add(10, 1)
+
+6
+
+7
+
+prioUnsortedQueue.add(20, 3)
+
+pricUnsortedQueue.add(23, 2)
+
+prioUnsortedQueue.add(21, 1)
+
+9 prioUnsortedQueue.add(24, 7)
+
+10
+
+11
+
+prioUnsortedQueue.add(29, 10)
+
+prioUnsortedQueue.print_all()
+
+12
+
+pricunsortedQueue.remove()
+
+13 prioUnsortedQueue.print_all()
